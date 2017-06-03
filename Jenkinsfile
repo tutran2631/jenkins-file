@@ -10,5 +10,8 @@ pipeline {
           ])
       }
     }
+    stage('echo') {
+        sh 'echo "$params.env"==="$params.target"'
+    }
   }
 }
