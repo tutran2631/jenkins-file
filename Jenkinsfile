@@ -13,7 +13,7 @@ pipeline {
     }
     stage('complete') {
       steps {
-        echo "Build tag: [${BUILD_TAG}]. Build id: [${BUILD_ID}]. Build Number: [$BUILD_NUMBER]. Build URL: [$BUILD_URL]"
+        echo '"Build tag: [${BUILD_TAG}]. Build id: [${BUILD_ID}]. Build Number: [$BUILD_NUMBER]. Build URL: [$BUILD_URL]"'
       }
     }
   }
