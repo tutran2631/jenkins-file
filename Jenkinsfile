@@ -13,7 +13,7 @@ pipeline {
     }
     stage('echo') {
         steps {
-            sh 'echo "$params.env"==="${params.userInput}"'
+            sh 'echo "$params.env===${params.userInput}"'
 
         }
     }
