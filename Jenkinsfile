@@ -13,15 +13,7 @@ pipeline {
     }
     stage('complete') {
       steps {
-        echo " This is the build tag: ${env.BUILD_TAG}"
-      }
-    }
-    stage('print') {
-      steps {
-        catchError() {
-          sh "echo ${BUILD_TAG}-${env.BUILD_TAG}"
-        }
-        
+        echo "Build tag: [$BUILD_TAG]. Build id: [$BUILD_ID]. Build Number: [$BUILD_NUMBER]. Build URL: [$BUILD_URL]"
       }
     }
   }
