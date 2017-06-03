@@ -18,7 +18,10 @@ pipeline {
     }
     stage('print') {
       steps {
-        catchError()
+        catchError() {
+          sh 'echo "${BUILD_TAG} - ${env.BUILD_TAG}"'
+        }
+        
       }
     }
   }
