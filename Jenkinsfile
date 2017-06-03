@@ -8,7 +8,6 @@ pipeline {
                [$class: 'TextParameterDefinition', defaultValue: 'uat', description: 'Environment', name: 'env'],
                [$class: 'TextParameterDefinition', defaultValue: 'uat1', description: 'Target', name: 'target']
           ])
-          $params.input = userInput
       }
     }
     stage('echo') {
