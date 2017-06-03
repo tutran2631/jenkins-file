@@ -16,5 +16,10 @@ pipeline {
         echo ' This is the build tag: ${env.BUILD_TAG}'
       }
     }
+    stage('print') {
+      steps {
+        catchError()
+      }
+    }
   }
 }
