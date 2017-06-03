@@ -1,9 +1,9 @@
 pipeline {
   agent any
   stages {
-    stage('complete') {
+    stage('params') {
       steps {
-        echo 'Success'
+        input(message: 'Please enter the build tag', id: 'DEPLOY_TAG', ok: 'OK')
       }
     }
   }
