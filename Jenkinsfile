@@ -8,7 +8,10 @@ pipeline {
     }
     stage('archive') {
       steps {
-        archiveArtifacts(onlyIfSuccessful: true, artifacts: 'README.md')
+        sh '''
+            tar cvfz "$BUILD_TAG.tar.gz" jenkins-build-test
+            cp "$BUILD_TAG.tar.gz" ~/archives/
+        '''
       }
     }
     stage('complete') {
