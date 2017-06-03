@@ -13,7 +13,7 @@ pipeline {
     }
     stage('complete') {
       steps {
-        echo 'Success'
+        echo ' This is the build tag: ${BUILD_TAG}'
       }
     }
   }
