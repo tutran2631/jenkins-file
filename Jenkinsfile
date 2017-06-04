@@ -7,7 +7,7 @@ pipeline {
     stage('init') {
         steps {
             script {
-                env.DEPLOY_CHOICES = sh(script: "ls -t $archiveLocation/*gz | sed -e 's/\..*$//'", returnStout: true)
+                env.DEPLOY_CHOICES = sh(script: "ls -t $archiveLocation/*gz | sed -e 's/\\..*$//'", returnStout: true)
                 env.ENV_CHOICES = ["QA","DEV","BETA","PROD"].join("\n")
             }
         }
