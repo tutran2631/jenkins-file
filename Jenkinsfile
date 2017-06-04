@@ -15,8 +15,8 @@ pipeline {
                 ])
                 echo ("Env: "+userInput['env'])
                 echo ("Target: "+userInput['target'])
-                env.DEPLOY_TAG = userInput['env']
-                echo "$DEPLOY_TAG"
+                env.DEPLOY_TAG1 = userInput['env']
+                echo "$DEPLOY_TAG1"
             }
 
         }
@@ -24,7 +24,7 @@ pipeline {
     }
     stage('echo') {
         steps {
-            sh 'echo "$DEPLOY_TAG"'
+            sh 'echo "$DEPLOY_TAG - $DEPLOY_TAG1"'
 
         }
     }
