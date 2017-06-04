@@ -2,13 +2,12 @@ pipeline {
   agent any
   environment {
     archiveLocation = '/Users/trant/archives'
-    sedCommand = ''' sed -e "s/\..*$//"'''
   }
   stages {
     stage('init') {
         steps {
             script {
-                env.DEPLOY_CHOICES = sh(script: "ls -t $archiveLocation/*gz | $sedCommand", returnStout: true)
+                env.DEPLOY_CHOICES = sh(script: $/ls -t $archiveLocation/*gz | sed -e 's/\..*$//'/$, returnStout: true)
                 env.ENV_CHOICES = ["QA","DEV","BETA","PROD"].join("\n")
             }
         }
