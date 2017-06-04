@@ -15,7 +15,7 @@ pipeline {
                 ])
                 echo ("Env: "+userInput['env'])
                 echo ("Target: "+userInput['target'])
-                $DEPLOY_TAG = userInput['env']
+                env.DEPLOY_TAG = userInput['env']
             }
 
         }
