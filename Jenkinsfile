@@ -2,7 +2,7 @@ pipeline {
   agent any
   environment {
     archiveLocation = '/Users/trant/archives'
-    choiceCommand = $/ls -t /Users/trant/archives/*gz | sed -e 's/\..*$//'/$
+    choiceCommand = $/ls -t /Users/trant/archives/*gz/$
   }
   stages {
     stage('init') {
@@ -23,8 +23,6 @@ pipeline {
                  [$class: 'ChoiceParameterDefinition', choices: "$ENV_CHOICES", description: 'Environment', name: 'env'],
                  [$class: 'ChoiceParameterDefinition', choices: "$DEPLOY_CHOICES", description: 'Target', name: 'target'],
                 ])
-                echo ("Env: "+userInput['env'])
-                echo ("Target: "+userInput['target'])
                 env.DEPLOY_ENV = userInput['env']
                 env.DEPLOY_TARGET = userInput['target']
             }
