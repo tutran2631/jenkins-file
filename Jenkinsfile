@@ -8,13 +8,15 @@ pipeline {
     stage('init') {
         steps {
             script {
-                env.DEPLOY_CHOICES = sh(script: "$choiceCommand", returnStout: true)
+                env.DEPLOY_CHOICES = sh(script: "$choiceCommand", returnStout: true).trim()
                 env.ENV_CHOICES = ["QA","DEV","BETA","PROD"].join("\n")
             }
         }
     }
     stage('params') {
         steps {
+            echo "$choiceCommand"
+            echo "$DEPLOY_CHOICES"
             script {
                 def userInput = input(
                  id: 'userInput', message: 'Let\'s promote?', parameters: [
