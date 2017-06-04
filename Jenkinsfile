@@ -8,7 +8,7 @@ pipeline {
     stage('init') {
         steps {
             script {
-                env.DEPLOY_CHOICES = sh(script: "$choiceCommand", returnStout: true).trim()
+                env.DEPLOY_CHOICES = sh(script: "$choiceCommand", returnStdout: true).trim()
                 env.ENV_CHOICES = ["QA","DEV","BETA","PROD"].join("\n")
             }
         }
