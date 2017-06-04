@@ -1,18 +1,29 @@
 pipeline {
   agent any
+  environment {
+    archiveLocation = '/Users/trant/archives'
+  }
   stages {
+    stage('init') {
+        steps {
+            script {
+                env.DEPLOY_CHOICES = sh(script: "ls -t $archiveLocation/*gz | sed -e 's/\..*$//'", returnStout: true)
+                env.ENV_CHOICES = ["QA","DEV","BETA","PROD"].join("\n")
+            }
+        }
+    }
     stage('params') {
         steps {
             script {
                 def userInput = input(
                  id: 'userInput', message: 'Let\'s promote?', parameters: [
-                 [$class: 'ChoiceParameterDefinition', choices: ["QA","DEV"].join("\n"), description: 'Environment', name: 'env'],
-                 [$class: 'TextParameterDefinition', defaultValue: 'uat1', description: 'Target', name: 'target']
+                 [$class: 'ChoiceParameterDefinition', choices: "$ENV_CHOICES", description: 'Environment', name: 'env'],
+                 [$class: 'ChoiceParameterDefinition', choices: "$DEPLOY_CHOICES", description: 'Target', name: 'target'],
                 ])
                 echo ("Env: "+userInput['env'])
                 echo ("Target: "+userInput['target'])
-                env.DEPLOY_TAG1 = userInput['env']
-                echo "$DEPLOY_TAG1"
+                env.DEPLOY_ENV = userInput['env']
+                env.DEPLOY_TARGET = userInput['target']
             }
 
         }
@@ -20,7 +31,7 @@ pipeline {
     }
     stage('echo') {
         steps {
-            sh 'echo "$DEPLOY_TAG - $DEPLOY_TAG1"'
+            sh 'echo "$DEPLOY_ENV - $DEPLOY_TARGET"'
 
         }
     }
