@@ -2,7 +2,9 @@ pipeline {
   agent any
   stages {
     stage('cleanup') {
-        sh 'rm -rf jenkins-build-test'
+        steps {
+            sh 'rm -rf jenkins-build-test'
+        }
     }
     stage('checkout') {
       steps {
