@@ -6,7 +6,7 @@ pipeline {
             script {
                 def userInput = input(
                  id: 'userInput', message: 'Let\'s promote?', parameters: [
-                 [$class: 'ChoiceParameterDefinition', choices: ["QA","DEV"], description: 'Environment', name: 'env'],
+                 [$class: 'ChoiceParameterDefinition', choices: ["QA","DEV"].join("\n"), description: 'Environment', name: 'env'],
                  [$class: 'TextParameterDefinition', defaultValue: 'uat1', description: 'Target', name: 'target']
                 ])
                 echo ("Env: "+userInput['env'])
