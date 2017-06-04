@@ -1,5 +1,9 @@
 pipeline {
   agent any
+  environment {
+    DEPLOY_TAG = "deploy tag"
+    DEPLOY_TARGET = "deploy target"
+  }
   stages {
     stage('params') {
         steps {
@@ -11,6 +15,7 @@ pipeline {
                 ])
                 echo ("Env: "+userInput['env'])
                 echo ("Target: "+userInput['target'])
+                $DEPLOY_TAG = +userInput['env']
             }
 
         }
@@ -18,7 +23,7 @@ pipeline {
     }
     stage('echo') {
         steps {
-            sh 'echo "$params.env===${params.userInput}"'
+            sh 'echo "$DEPLOY_TAG"'
 
         }
     }
