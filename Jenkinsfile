@@ -1,6 +1,9 @@
 pipeline {
   agent any
   stages {
+    stage('cleanup') {
+        sh 'rm -rf jenkins-build-test'
+    }
     stage('checkout') {
       steps {
         sh 'git clone -b master --single-branch git@github.com:tutran2631/jenkins-build-test.git'
